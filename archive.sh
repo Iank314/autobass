@@ -14,3 +14,8 @@ if [[ -z "$SOURCE" || -z "$TARGET" ]]; then
   echo "Usage: $0 <source_dir> <target_dir>"
   exit 1
 fi
+
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+BACKUP_DIR="$TARGET/backup_$TIMESTAMP"
+
+mkdir -p "$BACKUP_DIR"
