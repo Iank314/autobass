@@ -19,3 +19,10 @@ TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 BACKUP_DIR="$TARGET/backup_$TIMESTAMP"
 
 mkdir -p "$BACKUP_DIR"
+
+if cp -r "$SOURCE"/* "$BACKUP_DIR"; then
+  echo "Backup completed: $BACKUP_DIR"
+else
+  echo "Error: Copy failed."
+  exit 1
+fi
