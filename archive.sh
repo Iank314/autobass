@@ -1,5 +1,14 @@
 #!/bin/bash
 
+LOGFILE="archive.log"
+
+log() {
+  LEVEL=$1
+  MESSAGE=$2
+  TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+  echo "$LEVEL: [$TIMESTAMP] $MESSAGE" | tee -a "$LOGFILE"
+}
+
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
   echo "Usage: $0 <source_dir> <target_dir>"
   echo "Creates a timestamped backup of source_dir inside target_dir."
