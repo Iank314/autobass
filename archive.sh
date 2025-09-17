@@ -18,11 +18,12 @@ fi
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 BACKUP_DIR="$TARGET/backup_$TIMESTAMP"
 
-mkdir -p "$BACKUP_DIR"
 
-if cp -r "$SOURCE"/* "$BACKUP_DIR"; then
-  echo "Backup completed: $BACKUP_DIR"
+ARCHIVE_FILE="$TARGET/backup_$TIMESTAMP.tar.gz"
+
+if tar -czf "$ARCHIVE_FILE" -C "$SOURCE" .; then
+  echo "Backup completed: $ARCHIVE_FILE"
 else
-  echo "Error: Copy failed."
+  echo "Error: Backup failed during compression."
   exit 1
 fi
