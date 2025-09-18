@@ -44,7 +44,7 @@ ARCHIVE_FILE="$TARGET/backup_$TIMESTAMP.tar.gz"
 log "INFO" "Backing up from $SOURCE to $ARCHIVE_FILE."
 
 if tar -czf "$ARCHIVE_FILE" -C "$SOURCE" .; then
-  echo "Backup completed: $ARCHIVE_FILE"
+  log "INFO" "Backup completed successfully."
 else
   echo "Error: Backup failed during compression."
   exit 1
