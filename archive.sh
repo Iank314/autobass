@@ -58,10 +58,10 @@ fi
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 ARCHIVE_FILE="$TARGET/backup_$TIMESTAMP.tar.gz"
 
-EXCLUDES=""
+EXCLUDES=()
 if [[ -f .bassignore ]]; then
   while IFS= read -r pattern; do
-    [[ -n "$pattern" ]] && EXCLUDES+=" --exclude=$pattern"
+    [[ -n "$pattern" ]] && EXCLUDES+=("--exclude=$pattern")
   done < .bassignore
 fi
 
@@ -69,10 +69,10 @@ log "INFO" "Backing up from $SOURCE to $ARCHIVE_FILE."
 
 if [[ -n "$DRYRUN" ]]; then
   log "INFO" "Dry-run listing of files to be backed up:"
-  tar -czf - $EXCLUDES -C "$SOURCE" . | tar -tzf - 2>/dev/null
+  tar -czf - "${EXCLUDES[@]}" -C "$SOURCE" . | tar -tzf - 2>/dev/null
   log "INFO" "Dry-run completed. No archive was created."
 else
-  if tar $EXCLUDES -czf "$ARCHIVE_FILE" -C "$SOURCE" .; then
+  if tar "${EXCLUDES[@]}" -czf "$ARCHIVE_FILE" -C "$SOURCE" .; then
     log "INFO" "Backup completed successfully."
   else
     log "ERROR" "Backup failed during compression."
