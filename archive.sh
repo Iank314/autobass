@@ -49,3 +49,7 @@ else
   log "ERROR" "Backup failed during compression."
   exit 1
 fi
+
+# Placeholder for unexpected errors
+# Example usage:
+# log "ERROR" "<placeholder>"
