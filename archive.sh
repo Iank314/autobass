@@ -1,7 +1,5 @@
 #!/bin/bash
 
-log "INFO" "archive script started."
-
 LOGFILE="archive.log"
 
 log() {
@@ -10,6 +8,9 @@ log() {
   TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
   echo "$LEVEL: [$TIMESTAMP] $MESSAGE" | tee -a "$LOGFILE"
 }
+
+
+log "INFO" "archive script started."
 
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
   echo "Usage: $0 <source_dir> <target_dir>"
