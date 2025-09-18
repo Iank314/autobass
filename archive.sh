@@ -59,7 +59,7 @@ fi
 
 log "INFO" "Backing up from $SOURCE to $ARCHIVE_FILE."
 
-if tar -czf "$ARCHIVE_FILE" -C "$SOURCE" .; then
+if tar $DRYRUN $EXCLUDES -czf "$ARCHIVE_FILE" -C "$SOURCE" .; then
   log "INFO" "Backup completed successfully."
 else
   log "ERROR" "Backup failed during compression."
