@@ -22,6 +22,14 @@ if [[ "$1" == "-h" || "$1" == "--help" ]]; then
   exit 0
 fi
 
+DRYRUN=""
+if [[ "$1" == "-d" || "$1" == "--dry-run" ]]; then
+  DRYRUN="--dry-run"
+  log "INFO" "Dry-run enabled. Simulating backup."
+  shift
+fi
+
+
 SOURCE=$1
 TARGET=$2
 
