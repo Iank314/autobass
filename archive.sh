@@ -46,6 +46,6 @@ log "INFO" "Backing up from $SOURCE to $ARCHIVE_FILE."
 if tar -czf "$ARCHIVE_FILE" -C "$SOURCE" .; then
   log "INFO" "Backup completed successfully."
 else
-  echo "Error: Backup failed during compression."
+  log "ERROR" "Backup failed during compression."
   exit 1
 fi
