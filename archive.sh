@@ -39,10 +39,9 @@ if [[ ! -d "$TARGET" ]]; then
 fi
 
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-BACKUP_DIR="$TARGET/backup_$TIMESTAMP"
-
-
 ARCHIVE_FILE="$TARGET/backup_$TIMESTAMP.tar.gz"
+
+log "INFO" "Backing up from $SOURCE to $ARCHIVE_FILE."
 
 if tar -czf "$ARCHIVE_FILE" -C "$SOURCE" .; then
   echo "Backup completed: $ARCHIVE_FILE"
