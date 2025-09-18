@@ -12,7 +12,6 @@ log() {
 
 log "INFO" "archive script started."
 
-# Load configuration if it exists
 if [[ -f archive.conf ]]; then
   source archive.conf
 fi
@@ -27,8 +26,13 @@ SOURCE=$1
 TARGET=$2
 
 if [[ -z "$SOURCE" || -z "$TARGET" ]]; then
-  log "ERROR" "Missing arguments. Usage: $0 <source_dir> <target_dir>"
-  exit 1
+  if [[ -n "$SOURCE_DIR" && -n "$TARGET_DIR" ]]; then
+    SOURCE=$SOURCE_DIR
+    TARGET=$TARGET_DIR
+  else
+    log "ERROR" "Missing arguments and no config defaults set. Usage: $0 <source_dir> <target_dir>"
+    exit 1
+  fi
 fi
 
 if [[ ! -d "$SOURCE" || ! -r "$SOURCE" ]]; then
@@ -54,7 +58,3 @@ else
   log "ERROR" "Backup failed during compression."
   exit 1
 fi
-
-# Placeholder for unexpected errors
-# Example usage:
-# log "ERROR" "<placeholder>"
