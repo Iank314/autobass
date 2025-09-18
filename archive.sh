@@ -50,6 +50,13 @@ fi
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 ARCHIVE_FILE="$TARGET/backup_$TIMESTAMP.tar.gz"
 
+EXCLUDES=""
+if [[ -f .bassignore ]]; then
+  while IFS= read -r pattern; do
+    [[ -n "$pattern" ]] && EXCLUDES+=" --exclude=$pattern"
+  done < .bassignore
+fi
+
 log "INFO" "Backing up from $SOURCE to $ARCHIVE_FILE."
 
 if tar -czf "$ARCHIVE_FILE" -C "$SOURCE" .; then
