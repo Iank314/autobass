@@ -12,6 +12,11 @@ log() {
 
 log "INFO" "archive script started."
 
+# Load configuration if it exists
+if [[ -f archive.conf ]]; then
+  source archive.conf
+fi
+
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
   echo "Usage: $0 <source_dir> <target_dir>"
   echo "Creates a timestamped backup of source_dir inside target_dir."
