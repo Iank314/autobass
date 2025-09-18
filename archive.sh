@@ -67,9 +67,15 @@ fi
 
 log "INFO" "Backing up from $SOURCE to $ARCHIVE_FILE."
 
-if tar $DRYRUN $EXCLUDES -czf "$ARCHIVE_FILE" -C "$SOURCE" .; then
-  log "INFO" "Backup completed successfully."
+if [[ -n "$DRYRUN" ]]; then
+  log "INFO" "Dry-run listing of files to be backed up:"
+  tar -tzf <(tar -czf - $EXCLUDES -C "$SOURCE" .) 2>/dev/null
+  log "INFO" "Dry-run completed. No archive was created."
 else
-  log "ERROR" "Backup failed during compression."
-  exit 1
+  if tar $EXCLUDES -czf "$ARCHIVE_FILE" -C "$SOURCE" .; then
+    log "INFO" "Backup completed successfully."
+  else
+    log "ERROR" "Backup failed during compression."
+    exit 1
+  fi
 fi
