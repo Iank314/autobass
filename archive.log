@@ -1,0 +1,8 @@
+INFO: [2025-09-17 21:18:10] archive script started.
+INFO: [2025-09-17 21:18:10] Backing up from /home/iank/my_source to /home/iank/my_target/backup_20250917_211810.tar.gz.
+INFO: [2025-09-17 21:18:10] Backup completed successfully.
+INFO: [2025-09-17 21:18:18] archive script started.
+ERROR: [2025-09-17 21:18:18] Source directory (/home/iank/my_source) does not exist or is not readable. Exiting.
+INFO: [2025-09-17 21:20:10] archive script started.
+INFO: [2025-09-17 21:20:10] Backing up from /home/iank/my_source to /home/iank/my_target/backup_20250917_212010.tar.gz.
+INFO: [2025-09-17 21:20:10] Backup completed successfully.
