@@ -1,5 +1,7 @@
 #!/bin/bash
 
+log "INFO" "archive script started."
+
 LOGFILE="archive.log"
 
 log() {
