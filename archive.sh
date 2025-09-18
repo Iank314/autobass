@@ -31,6 +31,13 @@ if [[ ! -d "$SOURCE" || ! -r "$SOURCE" ]]; then
   exit 1
 fi
 
+if [[ ! -d "$TARGET" ]]; then
+  if ! mkdir -p "$TARGET"; then
+    log "ERROR" "Target directory ($TARGET) does not exist or could not be created. Exiting."
+    exit 1
+  fi
+fi
+
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 BACKUP_DIR="$TARGET/backup_$TIMESTAMP"
 
