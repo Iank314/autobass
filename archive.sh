@@ -22,8 +22,12 @@ SOURCE=$1
 TARGET=$2
 
 if [[ -z "$SOURCE" || -z "$TARGET" ]]; then
-  echo "Error: Missing arguments."
-  echo "Usage: $0 <source_dir> <target_dir>"
+  log "ERROR" "Missing arguments. Usage: $0 <source_dir> <target_dir>"
+  exit 1
+fi
+
+if [[ ! -d "$SOURCE" || ! -r "$SOURCE" ]]; then
+  log "ERROR" "Source directory ($SOURCE) does not exist or is not readable. Exiting."
   exit 1
 fi
 
