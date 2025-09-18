@@ -69,7 +69,7 @@ log "INFO" "Backing up from $SOURCE to $ARCHIVE_FILE."
 
 if [[ -n "$DRYRUN" ]]; then
   log "INFO" "Dry-run listing of files to be backed up:"
-  tar -tzf <(tar -czf - $EXCLUDES -C "$SOURCE" .) 2>/dev/null
+  tar -czf - $EXCLUDES -C "$SOURCE" . | tar -tzf - 2>/dev/null
   log "INFO" "Dry-run completed. No archive was created."
 else
   if tar $EXCLUDES -czf "$ARCHIVE_FILE" -C "$SOURCE" .; then
