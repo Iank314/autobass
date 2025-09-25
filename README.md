@@ -71,8 +71,5 @@ Dry-run simulation
 
 Detailed logging to console and archive.log
 
-Versioning
-
-Current stable release: v1.0
 
 Features included: MVP backup, compression, logging, config support, exclusions, and dry-run
